@@ -1,0 +1,24 @@
+body {
+  margin: 0;
+  padding: 10px;
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  color: #444;
+}
+
+a {
+    background-color: cornsilk;
+    outline: black;
+    outline-width: 1px;
+    outline-style: solid;
+    padding: 5px;
+    margin-right: 5px;
+    text-decoration: none;
+}
+a:hover {
+    background-color: aliceblue;
+    outline-width: 2px;
+}
+
+.banner {
+    padding: 10px 10px 10px 0px;
+}
