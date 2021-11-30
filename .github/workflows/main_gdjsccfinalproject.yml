@@ -38,7 +38,6 @@ jobs:
      python -m venv --copies antenv
      source antenv/bin/activate
      pip install setuptools
-     pip install -r requirements.txt
   # Azure login
   - uses: azure/login@v1
     with:
