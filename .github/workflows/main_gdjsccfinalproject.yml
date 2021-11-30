@@ -8,7 +8,7 @@ on:
 # See this in-depth article on CI for Python applications: https://azure.github.io/AppService/2020/12/11/cicd-for-python-apps.html
 #
 # 1. Set up the following secrets in your repository:
-#   AZURE_CREDENTIALS_GITHUB_SECRET
+#   AZURE_CREDENTIALS
 #
 # 2. Change these variables for your configuration:
 env:
@@ -41,7 +41,7 @@ jobs:
   # Azure login
   - uses: azure/login@v1
     with:
-     creds: ${{ secrets.AZURE_CREDENTIALS_GITHUB_SECRET }}
+     creds: ${{ secrets.AZURE_CREDENTIALS }}
   - uses: azure/appservice-settings@v1
     with:
      app-name: ${{ env.AZURE_WEBAPP_NAME }}
