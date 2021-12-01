@@ -1,4 +1,8 @@
 <link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}">
+<h1 id="name">GDJS CCFINAL</h1>
+<p id="name1">Jack Cordonnier</p>
+<p id="name2">Sam Scherer</p>
+{% if logged_in %}
 <html>
     <div class="banner">
         <a href="/home">Home</a>
@@ -10,3 +14,4 @@
         <br>
     </div>
 </html>
+{% endif %}

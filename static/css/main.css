@@ -1,8 +1,10 @@
 body {
-  margin: 0;
-  padding: 10px;
-  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
-  color: #444;
+    text-align: center;
+    margin: 0;
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    color: #000;
+    background-color:#ddd;
+
 }
 
 a {
@@ -21,4 +23,78 @@ a:hover {
 
 .banner {
     padding: 10px 10px 10px 0px;
+}
+
+td, th {
+    max-width: 100px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    border: solid #ddd;
+    border-width: 0px 1px 1px 0px;
+    padding: 4px;
+}
+
+tr:nth-child(even){background-color: #f2f2f2;}
+
+tr:hover {background-color: #ddd;}
+
+th {
+    padding-top: 12px;
+    padding-bottom: 12px;
+    text-align: left;
+    color: white;
+    position: sticky;
+    top: 0;
+    background: #3373e7;
+}
+
+table {
+    display: block;
+    font-size:10px;
+    border-collapse: collapse;
+    max-height: 700px;
+    overflow-y: scroll;
+    width: 80%;
+    margin-left: 10%;
+    margin-right: 10%;
+}
+
+p#error {
+    color: red
+}
+
+h1 {
+    padding-top:10px;
+    padding-bottom:10px;
+    background-color: #3373e7;
+}
+
+h1#name {
+    color: white;
+    top: 0px;
+    left: 0px;
+    x: 10;
+    y: 0;
+    position: absolute;
+    margin: 0px
+}
+
+p#name1 {
+    color: white;
+    top: 12px;
+    left: 245px;
+    x: 5;
+    y: 0;
+    position: absolute;
+    margin: 0px
+}
+p#name2 {
+    color: white;
+    top: 28px;
+    left: 245px;
+    x: 5;
+    y: 0;
+    position: absolute;
+    margin: 0px
 }

@@ -1,4 +1,26 @@
+<h1>Household Data Search</h1>
 {% include 'banner.html' %}
 <html>
-    Add interactive data UI here
+    <form method = "POST">
+        <label for="householdnum">Household #</label><br>
+        <input type="number" id='householdnum' name='householdnum'><br>
+        <br>
+        <input type='submit' value='Search'><br>
+    </form>
+    {% if rows != None %}
+    <table border="3">
+        <tr>
+            {% for col in column_names %}
+            <th>{{ col[0] }}</th>
+            {% endfor %}
+        </tr>
+        {% for row in rows %}
+        <tr>
+            {% for data in row %}
+            <td> {{ data }} </td>
+            {% endfor %}
+        </tr>
+        {% endfor %}
+    </table>
+    {% endif %}
 </html>

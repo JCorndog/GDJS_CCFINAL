@@ -1,14 +1,14 @@
+<h1>Login</h1>
 {% include 'banner.html' %}
-<b>Note: hide banner once login is working correctly</b>
-
-<form>
-    <label for="username">Username:</label><br>
+<form method = "POST">
+    <label for="username">Username</label><br>
     <input type="text" id='username' name='username'><br>
     <br>
-    <label for='pw'>Password:</label><br>
-    <input type='text' id='pw' name='pw'><br>
+    <label for='pw'>Password</label><br>
+    <input type='password' id='pw' name='pw'><br>
     <br>
     <input type='submit' value='Log In!'><br>
 </form>
+<p id="error">{{ response }}</p>
 <br><br>
 <a href='/signup'>Sign up instead</a>

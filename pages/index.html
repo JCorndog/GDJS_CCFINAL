@@ -1,9 +1,24 @@
+<h1>Home</h1>
 {% include 'banner.html' %}
 <html>
     <p>
         Welcome to the site!
     </p>
     <p>
-        Include sample data (item # 10, per instructions) here
+        Sample Data Pull for HSHD_NUM #10
     </p>
+    <table border="3">
+        <tr>
+            {% for col in column_names %}
+            <th>{{ col[0] }}</th>
+            {% endfor %}
+        </tr>
+        {% for row in rows %}
+        <tr>
+            {% for data in row %}
+            <td> {{ data }} </td>
+            {% endfor %}
+        </tr>
+        {% endfor %}
+    </table>
 </html>
