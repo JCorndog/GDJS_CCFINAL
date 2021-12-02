@@ -6,7 +6,7 @@ server = 'funtimesserver.database.windows.net'
 database = 'CCDatabase'
 DBusername = 'admin2'
 DBpassword = '{Password2}'
-DBdriver = '{ODBC Driver 13 for SQL Server}'
+DBdriver = '{ODBC Driver 17 for SQL Server}'
 
 conn = pyodbc.connect('DRIVER='+DBdriver+';SERVER=tcp:'+server+';PORT=1433;DATABASE='+database+';UID='+DBusername+';PWD='+ DBpassword)
 cursor = conn.cursor()
