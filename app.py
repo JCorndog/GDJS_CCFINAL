@@ -1,15 +1,12 @@
-import flask
-import os
 from flask import Flask, render_template, request, redirect
 import pyodbc
-import random
 app = Flask(__name__, template_folder='./pages')
 
 server = 'funtimesserver.database.windows.net'
 database = 'CCDatabase'
 DBusername = 'admin2'
 DBpassword = '{Password2}'
-DBdriver = '{ODBC Driver 17 for SQL Server}'
+DBdriver = '{ODBC Driver 13 for SQL Server}'
 
 conn = pyodbc.connect('DRIVER='+DBdriver+';SERVER=tcp:'+server+';PORT=1433;DATABASE='+database+';UID='+DBusername+';PWD='+ DBpassword)
 cursor = conn.cursor()
