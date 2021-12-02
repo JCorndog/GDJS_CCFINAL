@@ -5,7 +5,6 @@ on:
   push:
     branches:
       - main
-      - fix/install-dependencies-correctly
 # CONFIGURATION
 # For help, go to https://github.com/Azure/Actions
 # See this in-depth article on CI for Python applications: https://azure.github.io/AppService/2020/12/11/cicd-for-python-apps.html
