@@ -1,5 +1,12 @@
 <h1>Engagement Over Time</h1>
 {% include 'banner.html' %}
 <html>
-    WRITEUP: Include data here regarding how customer engagement changes over time
+    <div>
+        <p id='center'>
+            Households have been spending less as time goes on according to data
+            collected as of 12/3/2021. Below is a chart which displays the trend of
+            amount spent to time.
+        </p>
+        <img src="{{url_for('static', filename='img/spending-over-time.png')}}" alt="Spending vs Time.">
+    </div>
 </html>

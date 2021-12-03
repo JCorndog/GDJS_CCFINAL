@@ -1,5 +1,20 @@
 <h1>Demographic Factors</h1>
 {% include 'banner.html' %}
 <html>
-    WRITEUP: Include data here regarding how demographic factors affect customer engagement
+    <div>
+        <p id='center'>
+            Among demographic factors that affect engagement, Age is high on the list.
+            As shown in the graph below, engagement is highest in customers in the age
+            range 45-54.
+        </p>
+        <img src="{{url_for('static', filename='img/spending-vs-time-per-age-range.png')}}" alt="Spending vs Time.">
+
+        <p id='center'>
+            A factor that doesn't significantly impact engagement is the presence of children. 
+            While "Households with no children" is the largest engagement demographic, the three
+            demographics which make up the "Has Children" almost, collectively, equal the engagement
+            of those with no children. This is shown in the below graph. 
+        </p>
+        <img src="{{url_for('static', filename='img/spending-vs-time-per-num-of-children.png')}}" alt="Spending vs Time.">
+    </div>
 </html>
