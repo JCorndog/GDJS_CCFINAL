@@ -1,5 +1,16 @@
 <h1>Upload Data</h1>
 {% include 'banner.html' %}
 <html>
-    Here, users should be able to upload 2021 data to database via GUI
+    <form class="upload" method = "POST" enctype="multipart/form-data">
+        Households
+        <input type="file" name="households">
+        <br>
+        Products
+        <input type="file" name="products">
+        <br>
+        Transactions
+        <input type="file" name="transactions">
+        <br>
+        <input type="submit" value="Upload">
+    </form>
 </html>
