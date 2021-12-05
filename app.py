@@ -94,34 +94,37 @@ def demographic_factors():
 def upload():
     if logged_in:
         if request.method == 'POST':
-            with pyodbc.connect(connString) as conn:
-                cursor = conn.cursor()
-                if request.files['households']:
-                    print('households upload')
-                    households_filestream = request.files['households'].stream
-                    households_df = pd.read_csv(households_filestream, names=["HSHD_NUM", "L", "AGE_RANGE", "MARITAL", "INCOME_RANGE", "HOMEOWNER", "HSHD_COMPOSITION", "HH_SIZE", "CHILDREN"], skiprows=1)
-                    households_df = households_df.astype({"CHILDREN": str})
-                    for row in households_df.itertuples():
-                        cursor.execute('''INSERT INTO [dbo].[400_households] (HSHD_NUM, L, AGE_RANGE, MARITAL, INCOME_RANGE, HOMEOWNER, HSHD_COMPOSITION, HH_SIZE, CHILDREN) VALUES (?,?,?,?,?,?,?,?,?)''',
-                                       row.HSHD_NUM, row.L, row.AGE_RANGE, row.MARITAL, row.INCOME_RANGE, row.HOMEOWNER, row.HSHD_COMPOSITION, row.HH_SIZE, row.CHILDREN)
+            try:
+                with pyodbc.connect(connString) as conn:
+                    cursor = conn.cursor()
+                    if request.files['households']:
+                        print('households upload')
+                        households_filestream = request.files['households'].stream
+                        households_df = pd.read_csv(households_filestream, names=["HSHD_NUM", "L", "AGE_RANGE", "MARITAL", "INCOME_RANGE", "HOMEOWNER", "HSHD_COMPOSITION", "HH_SIZE", "CHILDREN"], skiprows=1)
+                        households_df = households_df.astype({"CHILDREN": str})
+                        for row in households_df.itertuples():
+                            cursor.execute('''INSERT INTO [dbo].[400_households] (HSHD_NUM, L, AGE_RANGE, MARITAL, INCOME_RANGE, HOMEOWNER, HSHD_COMPOSITION, HH_SIZE, CHILDREN) VALUES (?,?,?,?,?,?,?,?,?)''',
+                                           row.HSHD_NUM, row.L, row.AGE_RANGE, row.MARITAL, row.INCOME_RANGE, row.HOMEOWNER, row.HSHD_COMPOSITION, row.HH_SIZE, row.CHILDREN)
 
-                if request.files['products']:
-                    print('products upload')
-                    products_filestream = request.files['products'].stream
-                    products_df = pd.read_csv(products_filestream, names=["PRODUCT_NUM", "DEPARTMENT", "COMMODITY", "BRAND_TY", "NATURAL_ORGANIC_FLAG"], skiprows=1)
-                    for row in products_df.itertuples():
-                        cursor.execute('''INSERT INTO [dbo].[400_products] (PRODUCT_NUM, DEPARTMENT, COMMODITY, BRAND_TY, NATURAL_ORGANIC_FLAG) VALUES (?,?,?,?,?)''',
-                                       row.PRODUCT_NUM, row.DEPARTMENT, row.COMMODITY, row.BRAND_TY, row.NATURAL_ORGANIC_FLAG)
+                    if request.files['products']:
+                        print('products upload')
+                        products_filestream = request.files['products'].stream
+                        products_df = pd.read_csv(products_filestream, names=["PRODUCT_NUM", "DEPARTMENT", "COMMODITY", "BRAND_TY", "NATURAL_ORGANIC_FLAG"], skiprows=1)
+                        for row in products_df.itertuples():
+                            cursor.execute('''INSERT INTO [dbo].[400_products] (PRODUCT_NUM, DEPARTMENT, COMMODITY, BRAND_TY, NATURAL_ORGANIC_FLAG) VALUES (?,?,?,?,?)''',
+                                           row.PRODUCT_NUM, row.DEPARTMENT, row.COMMODITY, row.BRAND_TY, row.NATURAL_ORGANIC_FLAG)
 
-                if request.files['transactions']:
-                    print('transactions upload')
-                    transactions_filestream = request.files['transactions'].stream
-                    transactions_df = pd.read_csv(transactions_filestream,names=["BASKET_NUM", "HSHD_NUM", "PURCHASE_", "PRODUCT_NUM", "SPEND", "UNITS", "STORE_R", "WEEK_NUM", "YEAR"], skiprows=1)
-                    for row in transactions_df.itertuples():
-                        cursor.execute('''INSERT INTO [dbo].[400_transactions] (BASKET_NUM, HSHD_NUM, PURCHASE, PRODUCT_NUM, SPEND, UNITS, STORE_R, WEEK_NUM, YEAR) VALUES (?,?,?,?,?,?,?,?,?)''',
-                                       row.BASKET_NUM, row.HSHD_NUM, row.PURCHASE_, row.PRODUCT_NUM, row.SPEND, row.UNITS, row.STORE_R, row.WEEK_NUM, row.YEAR)
-                conn.commit()
-                return redirect("/data")
+                    if request.files['transactions']:
+                        print('transactions upload')
+                        transactions_filestream = request.files['transactions'].stream
+                        transactions_df = pd.read_csv(transactions_filestream,names=["BASKET_NUM", "HSHD_NUM", "PURCHASE_", "PRODUCT_NUM", "SPEND", "UNITS", "STORE_R", "WEEK_NUM", "YEAR"], skiprows=1)
+                        for row in transactions_df.itertuples():
+                            cursor.execute('''INSERT INTO [dbo].[400_transactions] (BASKET_NUM, HSHD_NUM, PURCHASE, PRODUCT_NUM, SPEND, UNITS, STORE_R, WEEK_NUM, YEAR) VALUES (?,?,?,?,?,?,?,?,?)''',
+                                           row.BASKET_NUM, row.HSHD_NUM, row.PURCHASE_, row.PRODUCT_NUM, row.SPEND, row.UNITS, row.STORE_R, row.WEEK_NUM, row.YEAR)
+                    conn.commit()
+                    return redirect("/data")
+            except Exception:
+                return redirect("/error")
         return render_template('upload.html', logged_in=logged_in)
     else:
         return redirect('/')
@@ -152,5 +155,8 @@ def signup():
                 response = "Please enter the required information"
     return render_template('signup.html', logged_in=logged_in, response=response)
 
+@app.route('/error')
+def errorPage():
+    return render_template('error.html', logged_in=logged_in)
 if __name__ == "__main__":
     app.run()
